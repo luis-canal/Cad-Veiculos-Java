@@ -45,12 +45,18 @@ void main() {
 void cadastrar() {
     String veiculo = IO.readln("Digite o nome do veículo: ");
     veiculo = veiculo.trim();
-    //TO DO validação de duplicatas (equals ignore case)
-    if (veiculo.isEmpty())
+    if (veiculo.isEmpty()) {
         IO.println("Nome do veículo inválido");
-    else
-        veiculos.add(veiculo);
-    
+        return;
+    }
+    for (String v : veiculos){
+        if (v.equalsIgnoreCase(veiculo)) {
+            IO.println("Veículo já cadastrado!");
+            return;
+        }
+    }
+    veiculos.add(veiculo); 
+    IO.println("Veículo cadastrado com sucesso!");
 }
 
 void listar() {
@@ -75,4 +81,4 @@ void remover() {
 //TO DO mensagem de list vazia no listar e buscar
 //TO DO editar veículo, informar o indice, digitar o novo nome e passar pelas mesmas validações do cadastrar
 //TO DO ordenação da lista antes de exibir, bubble sort
-//TO DO remover por nome
+//TO DO remover por nome 
