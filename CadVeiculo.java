@@ -125,6 +125,7 @@ void editar_veiculo() {
         return;
     }
     String novo_nome = IO.readln("Digite o novo nome do veículo: ");
+    novo_nome = novo_nome.trim();
     if (novo_nome.isEmpty()) {
         IO.println("Nome do veículo inválido");
         return;
@@ -139,6 +140,19 @@ void editar_veiculo() {
     veiculos.set(indice - 1, novo_nome);
     IO.println("Veículo editado com sucesso");
 }
-//TO DO editar veículo, informar o indice, digitar o novo nome e passar pelas mesmas validações do cadastrar
+
+void remover_por_nome() {
+    if (veiculos.isEmpty()) {
+        IO.println("A lista de veículos está vazia");
+        return;
+    }
+    String removido = IO.readln("Digite o nome do veículo a ser removido: ");
+    if (removido.isEmpty()) {
+        IO.println("Nome do veículo inválido");
+        return;
+    }
+    removido = removido.trim().toLowerCase();
+
+}
 //TO DO ordenação da lista antes de exibir, bubble sort
 //TO DO remover por nome 
