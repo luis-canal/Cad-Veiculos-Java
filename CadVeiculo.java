@@ -65,6 +65,10 @@ void cadastrar() {
 }
 
 void listar() {
+    if (veiculos.isEmpty()) {
+        IO.println("A lista de veículos está vazia");
+        return;
+    }
     for (int i = 1; i <= veiculos.size(); i++) {
         IO.println(i + " - " + veiculos.get(i - 1));
     }
@@ -83,22 +87,36 @@ void remover() {
 }
 
 void buscar_por_nome() {
+    if (veiculos.isEmpty()) {
+        IO.println("A lista de veículos está vazia");
+        return;
+    }
     String busca = IO.readln("Digite o nome do veículo a ser buscado: ");
     busca = busca.trim().toLowerCase();
     boolean encontrado = false;
+    int tamanho = 0;
 
     for (String v : veiculos) {
         if (v.toLowerCase().contains(busca)) {
             IO.println("Veículo encontrado: " + v);
+            tamanho++;
             encontrado = true;
         }
     }
     if (!encontrado)
         IO.println("Nenhum veículo encontrado");
-    IO.println("Total de veículos cadastrados: " + veiculos.size());
+    IO.println("Total de veículos encontrados: " + tamanho);
 }
 
-//TO DO mensagem de list vazia no listar e buscar
+void editar_veiculo() {
+    listar();
+    int indice = Input.scanInt("Digite o índice do carro a ser editado: ");
+    if (indice > veiculos.size() || indice <= 0)
+        IO.println("Veículo não encontrado");
+    else {
+        String novo_nome = IO.readln("Digite o novo nome do veículo: ");
+    }
+}
 //TO DO editar veículo, informar o indice, digitar o novo nome e passar pelas mesmas validações do cadastrar
 //TO DO ordenação da lista antes de exibir, bubble sort
 //TO DO remover por nome 
