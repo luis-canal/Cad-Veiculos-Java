@@ -9,9 +9,10 @@ void main() {
             MENU
             1- Cadastrar Veículo
             2- Listar Veículos
-            3- Remover Veículo
-            4- Buscar por nome
-            5- Editar veículo
+            3- Remover Veículo pelo índice
+            4- Remover veículo pelo nome
+            5- Buscar por nome
+            6- Editar veículo
             0- Sair
             """;
     int opcao;
@@ -33,10 +34,14 @@ void main() {
                 IO.readln("Pressione enter para continuar");                
             }
             case 4 -> {
-                buscar_por_nome();
+                remover_por_nome();
                 IO.readln("Pressione enter para continuar");                
             }
             case 5 -> {
+                buscar_por_nome();
+                IO.readln("Pressione enter para continuar");                
+            }
+            case 6 -> {
                 editar_veiculo();
                 IO.readln("Pressione enter para continuar");                
             }
@@ -146,13 +151,21 @@ void remover_por_nome() {
         IO.println("A lista de veículos está vazia");
         return;
     }
+    listar();
     String removido = IO.readln("Digite o nome do veículo a ser removido: ");
     if (removido.isEmpty()) {
         IO.println("Nome do veículo inválido");
         return;
     }
-    removido = removido.trim().toLowerCase();
-
+    removido = removido.trim();
+    for (int i = 0; i < veiculos.size(); i++) {
+        if (veiculos.get(i).equalsIgnoreCase(removido)) {
+            String nomeRemovido = veiculos.remove(i);
+            IO.println("Veículo " + nomeRemovido + " removido com sucesso!");
+            return;
+        }
+    }
+    IO.println("Veículo não encontrado.");
 }
 //TO DO ordenação da lista antes de exibir, bubble sort
 //TO DO remover por nome 
