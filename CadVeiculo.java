@@ -79,6 +79,7 @@ void listar() {
         IO.println("A lista de veículos está vazia");
         return;
     }
+    bubble_sort();
     for (int i = 1; i <= veiculos.size(); i++) {
         IO.println(i + " - " + veiculos.get(i - 1));
     }
@@ -167,5 +168,19 @@ void remover_por_nome() {
     }
     IO.println("Veículo não encontrado.");
 }
+
+void bubble_sort() {
+    for (int i = 0; i < veiculos.size() - 1; i++) {
+        for (int j = 0; j < veiculos.size() - 1 - i; j++) {
+
+            String atual = veiculos.get(j);
+            String proximo = veiculos.get(j + 1);
+
+            if (atual.compareToIgnoreCase(proximo) > 0) {
+                veiculos.set(j, proximo);
+                veiculos.set(j + 1, atual);
+            }
+        }
+    }
+}
 //TO DO ordenação da lista antes de exibir, bubble sort
-//TO DO remover por nome 
