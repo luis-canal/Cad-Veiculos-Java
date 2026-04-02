@@ -68,6 +68,7 @@ void listar() {
     for (int i = 1; i <= veiculos.size(); i++) {
         IO.println(i + " - " + veiculos.get(i - 1));
     }
+    IO.println("Total de veículos cadastrados: " + veiculos.size());
 }
 
 void remover() {
@@ -97,8 +98,6 @@ void buscar_por_nome() {
     IO.println("Total de veículos cadastrados: " + veiculos.size());
 }
 
-//TO DO busca por nome(contains)
-//TO DO total de veiculos na listagem e na busca
 //TO DO mensagem de list vazia no listar e buscar
 //TO DO editar veículo, informar o indice, digitar o novo nome e passar pelas mesmas validações do cadastrar
 //TO DO ordenação da lista antes de exibir, bubble sort
