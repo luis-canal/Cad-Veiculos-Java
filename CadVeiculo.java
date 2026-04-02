@@ -11,6 +11,7 @@ void main() {
             2- Listar Veículos
             3- Remover Veículo
             4- Buscar por nome
+            5- Editar veículo
             0- Sair
             """;
     int opcao;
@@ -33,6 +34,10 @@ void main() {
             }
             case 4 -> {
                 buscar_por_nome();
+                IO.readln("Pressione enter para continuar");                
+            }
+            case 5 -> {
+                editar_veiculo();
                 IO.readln("Pressione enter para continuar");                
             }
             case 0 -> {
@@ -109,13 +114,30 @@ void buscar_por_nome() {
 }
 
 void editar_veiculo() {
+    if (veiculos.isEmpty()) {
+        IO.println("A lista de veículos está vazia");
+        return;
+    }
     listar();
     int indice = Input.scanInt("Digite o índice do carro a ser editado: ");
-    if (indice > veiculos.size() || indice <= 0)
+    if (indice > veiculos.size() || indice <= 0) {
         IO.println("Veículo não encontrado");
-    else {
-        String novo_nome = IO.readln("Digite o novo nome do veículo: ");
+        return;
     }
+    String novo_nome = IO.readln("Digite o novo nome do veículo: ");
+    if (novo_nome.isEmpty()) {
+        IO.println("Nome do veículo inválido");
+        return;
+    }
+    for (String v : veiculos){
+        if (v.equalsIgnoreCase(novo_nome)) {
+            IO.println("Nome de Veículo já cadastrado!");
+            return;
+        }
+    }
+
+    veiculos.set(indice - 1, novo_nome);
+    IO.println("Veículo editado com sucesso");
 }
 //TO DO editar veículo, informar o indice, digitar o novo nome e passar pelas mesmas validações do cadastrar
 //TO DO ordenação da lista antes de exibir, bubble sort
