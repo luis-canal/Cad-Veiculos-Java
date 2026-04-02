@@ -10,6 +10,7 @@ void main() {
             1- Cadastrar Veículo
             2- Listar Veículos
             3- Remover Veículo
+            4- Buscar por nome
             0- Sair
             """;
     int opcao;
@@ -28,6 +29,10 @@ void main() {
             }
             case 3 -> {
                 remover();
+                IO.readln("Pressione enter para continuar");                
+            }
+            case 4 -> {
+                buscar_por_nome();
                 IO.readln("Pressione enter para continuar");                
             }
             case 0 -> {
@@ -74,6 +79,22 @@ void remover() {
         veiculos.remove(indice - 1);
         IO.println("Veículo removido com sucesso");
     }    
+}
+
+void buscar_por_nome() {
+    String busca = IO.readln("Digite o nome do veículo a ser buscado: ");
+    busca = busca.trim().toLowerCase();
+    boolean encontrado = false;
+
+    for (String v : veiculos) {
+        if (v.toLowerCase().contains(busca)) {
+            IO.println("Veículo encontrado: " + v);
+            encontrado = true;
+        }
+    }
+    if (!encontrado)
+        IO.println("Nenhum veículo encontrado");
+    IO.println("Total de veículos cadastrados: " + veiculos.size());
 }
 
 //TO DO busca por nome(contains)
